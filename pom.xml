@@ -10,10 +10,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
-        <configuration>
-          <source>8</source>
-          <target>8</target>
-        </configuration>
+        <version>3.11.0</version>
       </plugin>
     </plugins>
   </build>
@@ -22,47 +19,101 @@
   <name>ZeebeIntegration</name>
   <url>http://maven.apache.org</url>
 
+  <parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>3.1.4</version>
+  </parent>
+
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <java.version>17</java.version>
   </properties>
 
   <dependencies>
-
-    <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-jdk14 -->
+<!-- SPRING BOOT RELATED JARs-->
     <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>slf4j-jdk14</artifactId>
-      <version>2.0.0-alpha0</version>
-      <scope>runtime</scope>
-    </dependency>
-
-    <dependency>
-      <groupId>io.camunda</groupId>
-      <artifactId>spring-zeebe-starter</artifactId>
-      <version>8.2.0</version>
-    </dependency>
-
-    <dependency>
-      <groupId>io.camunda</groupId>
-      <artifactId>zeebe-client-java</artifactId>
-      <version>8.2.0</version>
-    </dependency>
-
-    <dependency>
-      <groupId>io.camunda</groupId>
-      <artifactId>camunda-tasklist-client-java</artifactId>
-      <version>1.7.0</version>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-web</artifactId>
+      <exclusions>
+        <exclusion>
+          <groupId>org.slf4j</groupId>
+          <artifactId>slf4j-api</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.apache.logging.log4j</groupId>
+          <artifactId>log4j-to-slf4j</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.slf4j</groupId>
+          <artifactId>jul-to-slf4j</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
 
 
+      <dependency>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-starter</artifactId>
+      </dependency>
+
     <dependency>
-      <groupId>io.camunda</groupId>
-      <artifactId>camunda-operate-client-java</artifactId>
-      <version>8.2.0</version>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
     </dependency>
 
-    <!-- https://mvnrepository.com/artifact/io.netty/netty-all -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-actuator</artifactId>
+    </dependency>
+
+
+      <!-- CORE SPRING BOOT RELATED JARs -->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-core</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-context</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-jdbc</artifactId>
+      <version>6.0.11</version>
+    </dependency>
+
+
+    <!-- CAMUNDA RELATED JARs-->
+
+      <dependency>
+          <groupId>io.camunda</groupId>
+          <artifactId>spring-zeebe-starter</artifactId>
+          <version>8.2.0</version>
+      </dependency>
+
+      <dependency>
+          <groupId>io.camunda</groupId>
+          <artifactId>zeebe-client-java</artifactId>
+          <version>8.2.0</version>
+      </dependency>
+
+      <dependency>
+          <groupId>io.camunda</groupId>
+          <artifactId>camunda-tasklist-client-java</artifactId>
+          <version>1.7.0</version>
+      </dependency>
+
+
+      <dependency>
+          <groupId>io.camunda</groupId>
+          <artifactId>camunda-operate-client-java</artifactId>
+          <version>8.2.0</version>
+      </dependency>
+
+    <!-- CAMUNDA JARs for grpc -->
     <dependency>
       <groupId>io.netty</groupId>
       <artifactId>netty-bom</artifactId>
@@ -71,14 +122,14 @@
       <scope>import</scope>
     </dependency>
 
-    <!-- https://mvnrepository.com/artifact/com.squareup.okhttp/okhttp -->
+    <!-- https API calls  RELATED JARs-->
     <dependency>
       <groupId>com.squareup.okhttp</groupId>
       <artifactId>okhttp</artifactId>
       <version>2.7.5</version>
     </dependency>
 
-    <!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient -->
+
     <dependency>
       <groupId>org.apache.httpcomponents</groupId>
       <artifactId>httpmime</artifactId>
@@ -98,11 +149,28 @@
       <version>1.49.1</version>
     </dependency>
 
-    <!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient -->
+    <!-- JASON string creations RELATED JARs-->
     <dependency>
       <groupId>org.json</groupId>
       <artifactId>json</artifactId>
       <version>20230618</version>
     </dependency>
+
+    <!-- POSTGRESQL RELATED JARs-->
+
+    <dependency>
+      <groupId>org.postgresql</groupId>
+      <artifactId>postgresql</artifactId>
+      <version>42.6.0</version>
+    </dependency>
+
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <scope>test</scope>
+    </dependency>
+
   </dependencies>
+
+
 </project>
